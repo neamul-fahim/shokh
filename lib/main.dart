@@ -7,9 +7,11 @@ import 'my_home_page/my_home_page.dart';
 
 
     Future <void> main() async{
-  runApp(MultiProvider(
+  runApp(
+      MultiProvider(
     providers: [
-      ChangeNotifierProvider<MyHomePageProvider>(create: (_)=>MyHomePageProvider()),
+      ChangeNotifierProvider<MyHomePageProvider>
+        (create: (_)=>MyHomePageProvider()),
     ],
       child: MyApp()));
 }

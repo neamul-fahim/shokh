@@ -1,7 +1,11 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sokh/drawer/drawer_structure.dart';
+
 import 'package:sokh/product_categories/product_categories.dart';
+import 'package:sokh/provider/my_home_page_provider.dart';
+
 
 
 import '../bottom_navigation_search_page.dart';
@@ -37,10 +41,10 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
 
+    Provider.of<MyHomePageProvider>(context,listen: false).initializemyHomePageModelClass();
 
     double dynamicHeight =MediaQuery.of(context).size.height;
     double dynamicWidth =MediaQuery.of(context).size.width;
-
 
 
 
@@ -94,18 +98,21 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
 
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            ImageSlider(),
+        child: Consumer<MyHomePageProvider>(builder: (context,myHomePageProvider,index){
+          return  Column(
+            children: [
 
-            ProductCategories(),
+              ImageSlider(),
 
+              ProductCategories(),
 
-            FlashSale(),
+              FlashSale(),
 
+            ],
+          );
 
-          ],
-        )
+        })
+
       ),
 
 
