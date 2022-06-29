@@ -2,16 +2,11 @@ import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.da
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sokh/drawer/drawer_structure.dart';
-
 import 'package:sokh/product_categories/product_categories.dart';
 import 'package:sokh/provider/my_home_page_provider.dart';
-
-
-
 import '../bottom_navigation_search_page.dart';
-
 import '../flash_sale/flash_sale.dart';
-import '../image_slider/slider_image.dart';
+import '../image_slider/image_slider.dart';
 
 
 
@@ -84,17 +79,6 @@ class _MyHomePageState extends State<MyHomePage> {
         notchSmoothness: NotchSmoothness.smoothEdge,
         onTap: (index) => setState(() =>
         _bottomNavIndex = index),
-
-
-        // onTap: (index) {
-        //   setState(() {
-        //     _bottomNavIndex = index
-        //   });
-        // }
-
-        //other params
-
-
       ),
 
       body: SingleChildScrollView(
@@ -102,9 +86,13 @@ class _MyHomePageState extends State<MyHomePage> {
           return  Column(
             children: [
 
-              ImageSlider(),
 
-              ProductCategories(),
+              ImageSlider(
+                 // context: context,
+                  myHomePageProvider: myHomePageProvider),
+
+              ProductCategories(context: context, homePageProvider: myHomePageProvider,),
+
 
               FlashSale(),
 

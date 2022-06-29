@@ -2,10 +2,20 @@
 import 'package:flutter/material.dart';
 import 'package:sokh/product_categories/custom_circle_container.dart';
 import 'package:sokh/product_categories/product_category_pic_and_name.dart';
+import 'package:sokh/provider/my_home_page_provider.dart';
 
 
 class ProductCategories extends StatefulWidget {
-  const ProductCategories({Key? key}) : super(key: key);
+
+
+  BuildContext context;
+  MyHomePageProvider homePageProvider;
+   ProductCategories({Key? key,
+    required this.context,
+    required this.homePageProvider,
+
+
+  }) : super(key: key);
 
   @override
   State<ProductCategories> createState() => _ProductCategoriesState();
@@ -39,8 +49,10 @@ class _ProductCategoriesState extends State<ProductCategories> {
                   children: [
                     Spacer(),
                        for(int i=0;i<=4;i++)
-                    CustomCircleContainer(productPic: productCatPicAndName.productPic[i],
-                      productDescription: productCatPicAndName.productDescription[i],
+                    CustomCircleContainer(productPic:
+                    widget.homePageProvider.myHomePageModelClass.productCategoryPicAndDescription![i].categoryPic.toString(),
+                      productDescription:
+                      widget.homePageProvider.myHomePageModelClass.productCategoryPicAndDescription![i].categoryDescription.toString(),
                       //index: i,
                     ),
                     Spacer(),

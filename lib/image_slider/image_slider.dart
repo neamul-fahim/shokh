@@ -1,12 +1,24 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sokh/image_slider/imaes_of_image_slider.dart';
+import 'package:sokh/provider/my_home_page_provider.dart';
 
 
 
 class ImageSlider extends StatefulWidget {
-  const ImageSlider({Key? key}) : super(key: key);
+
+ // BuildContext context;
+ MyHomePageProvider myHomePageProvider;
+
+   ImageSlider({Key? key,
+
+   // required this.context,
+
+   required this.myHomePageProvider,
+
+  }) : super(key: key);
 
   @override
   State<ImageSlider> createState() => _ImageSliderState();
@@ -39,7 +51,7 @@ class _ImageSliderState extends State<ImageSlider> {
             scrollDirection: Axis.vertical,
             autoPlay: true,
           ),
-          items: imagesOfImageSlider.productPic.map((index)=>PhysicalModel(
+          items: widget.myHomePageProvider.myHomePageModelClass.imageSliderPics!.map((index)=>PhysicalModel(
 
             color: Colors.black,
             shadowColor: Colors.teal,
