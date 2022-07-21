@@ -25,6 +25,7 @@ class _FlashSaleState extends State<FlashSale> {
            //height: dynamicHeight*0.3,
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
+
         child: Row(
          children:  [
            FlashSaleCustomContainer(),

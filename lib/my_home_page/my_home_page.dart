@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sokh/drawer/drawer_structure.dart';
 import 'package:sokh/product_categories/product_categories.dart';
+import 'package:sokh/provider/app_drawer_provider.dart';
 import 'package:sokh/provider/my_home_page_provider.dart';
 import '../bottom_navigation_search_page.dart';
 import '../flash_sale/flash_sale.dart';
@@ -40,8 +41,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
     double dynamicHeight =MediaQuery.of(context).size.height;
     double dynamicWidth =MediaQuery.of(context).size.width;
-
-
 
 
     return Scaffold(
@@ -87,8 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
 
 
-              ImageSlider(
-                 // context: context,
+              ImageSlider(//context: context,
                   myHomePageProvider: myHomePageProvider),
 
               ProductCategories(context: context, homePageProvider: myHomePageProvider,),

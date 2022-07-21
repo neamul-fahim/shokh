@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sokh/provider/app_drawer_provider.dart';
 import 'package:sokh/provider/my_home_page_provider.dart';
 import 'my_home_page/my_home_page.dart';
 
@@ -10,10 +11,12 @@ import 'my_home_page/my_home_page.dart';
   runApp(
       MultiProvider(
     providers: [
-      ChangeNotifierProvider<MyHomePageProvider>
-        (create: (_)=>MyHomePageProvider()),
+      ChangeNotifierProvider<MyHomePageProvider>(create: (_)=>MyHomePageProvider()),
+      ChangeNotifierProvider<AppDrawerProvider>(create: (_)=>AppDrawerProvider()),
+      ChangeNotifierProvider<WeatherProvider>(create: (_)=>WeatherProvider()),
     ],
-      child: MyApp()));
+      child: MyApp())
+  );
 }
 
 class MyApp extends StatelessWidget {

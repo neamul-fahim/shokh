@@ -38,7 +38,7 @@ class _ImageSliderState extends State<ImageSlider> {
 
 
     return Container(
-        height:dynamicHeight*0.4,
+        height:dynamicHeight*0.3,
         width: dynamicWidth,
         decoration: BoxDecoration(
          // color: Colors.teal

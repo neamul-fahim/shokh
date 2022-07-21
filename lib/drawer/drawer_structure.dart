@@ -2,7 +2,11 @@
 //import 'package:first_flutter_p/my_home_page.dart';
 //import 'package:first_flutter_p/signup/signup.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:sokh/drawer/weather.dart';
 import 'package:sokh/my_home_page/my_home_page.dart';
+
+import '../provider/app_drawer_provider.dart';
 
 class CustomAppDrawer extends StatefulWidget {
   const CustomAppDrawer({Key? key}) : super(key: key);
@@ -15,50 +19,56 @@ class CustomAppDrawer extends StatefulWidget {
 
 
 
-
 class _CustomAppDrawerState extends State<CustomAppDrawer> {
   @override
   Widget build(BuildContext context) {
+
+    Provider.of<AppDrawerProvider>(context,listen: false).initializeAppDrawerModelClass();
+
     double dynamicHeight=MediaQuery.of(context).size.height;
     double dynamicWidth=MediaQuery.of(context).size.width;
-    return Container(
-      height: dynamicHeight,
-      width: dynamicWidth*2/3,
-      decoration: BoxDecoration(
+    return
+      Consumer <AppDrawerProvider>(builder: (context,appDrawerProvider,index)
+          {
+            return Container(
+              height: dynamicHeight,
+              width: dynamicWidth*2/3,
+              decoration: BoxDecoration(
 
-        color: Colors.teal.shade300,
-        borderRadius: BorderRadius.circular(20),
-      ),
+                color: Colors.teal.shade300,
+                borderRadius: BorderRadius.circular(20),
+              ),
 
-      child: Column(
-        children:[
-        Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: Container(
-            height: dynamicWidth*0.18,
-            width: dynamicWidth*0.18,
-            decoration: BoxDecoration(
-              color: Colors.black,
-                  borderRadius: BorderRadius.circular(180)
-            ),
+              child: Column(
+                children:[
+                  Padding(
+                    padding: EdgeInsets.all(12),
+                    child: Container(
 
-          ),
-        ),
+                      height: dynamicWidth*0.18,
+                      width: dynamicWidth*0.18,
+                      decoration: BoxDecoration(
+                          color: Colors.black,
+                          borderRadius: BorderRadius.circular(30),
+                          image: DecorationImage(image:
+                          AssetImage(appDrawerProvider.appDrawerModelClass.profilePic.toString())
+                          )
+                      ),
+                    ),
+                  ),
 
-          drawerProperty(Icons.home_outlined, 'Home',context,()=>MyHomePage()),
-          drawerProperty(Icons.add_circle, 'Add Post',context,()=>MyHomePage()),
-          drawerProperty(Icons.notifications_active, 'Notification',context,()=>MyHomePage()),
+                  Text(appDrawerProvider.appDrawerModelClass.profileName.toString()),
 
+                  drawerProperty(Icons.home_rounded, 'Home',context,()=>MyHomePage()),
+                  drawerProperty(Icons.add_circle, 'Add Post',context,()=>MyHomePage()),
+                  drawerProperty(Icons.notifications_active, 'Notification',context,()=>MyHomePage()),
+                  drawerProperty(Icons.cloud_rounded, 'Weather',context,()=>Weather()),
 
-          // DrawerOptions(drawerOptionIcon: Icons.settings,
-          //    drawerOptionName: 'Settings'),
-          //
-          // DrawerOptions(drawerOptionIcon: Icons.logout_rounded,
-          //    drawerOptionName: 'LogOut'),
-
-        ],
-      ),
-    );
+                ],
+              ),
+            );
+          }
+      );
   }
 }
 
