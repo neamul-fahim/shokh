@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "575385173021",
+    "project_id": "shokh-e14d6",
+    "storage_bucket": "shokh-e14d6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:575385173021:android:422ad2076a964c1900daf4",
+        "android_client_info": {
+          "package_name": "com.example.sokh"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "575385173021-j6pbk5tuhmantl78m2okv37ooho95mqq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbQf9ibd50uS2tKZV3b02g2V1w4Chl5xE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "575385173021-j6pbk5tuhmantl78m2okv37ooho95mqq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
