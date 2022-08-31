@@ -1,8 +1,11 @@
 //import 'package:first_flutter_p/drawer/drawer_options.dart';
 //import 'package:first_flutter_p/my_home_page.dart';
 //import 'package:first_flutter_p/signup/signup.dart';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sokh/signup_and_login/log_in.dart';
 import 'package:sokh/drawer/weather.dart';
 import 'package:sokh/my_home_page/my_home_page.dart';
 
@@ -62,7 +65,9 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
                   drawerProperty(Icons.home_rounded, 'Home',context,()=>MyHomePage()),
                   drawerProperty(Icons.add_circle, 'Add Post',context,()=>MyHomePage()),
                   drawerProperty(Icons.notifications_active, 'Notification',context,()=>MyHomePage()),
-                  drawerProperty(Icons.cloud_rounded, 'Weather',context,()=>Weather()),
+                  //drawerProperty(Icons.cloud_rounded, 'Weather',context,()=>Weather()),
+                  drawerProperty(Icons.cloud_rounded, 'Login',context,()=>Login()),
+                 drawerProperty(Icons.logout_rounded, 'Logout',context,()=>Login()),
 
                 ],
               ),
@@ -79,9 +84,19 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
       padding: const EdgeInsets.all(15.0),
       child: InkWell(
         onTap: (){
+          if(IconData==Icons.logout_rounded)///for logout
+            {
+              FirebaseAuth.instance.signOut();
+              Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){
+                return className();///test purpose
+              }
+              ));
+            }
+          else ///for other drawer options
           Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){
-            return className();
-          }));
+            return className();///test purpose
+          }
+          ));
 
         },
         child: Row(

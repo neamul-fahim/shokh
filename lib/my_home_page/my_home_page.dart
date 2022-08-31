@@ -27,6 +27,7 @@ class MyHomePage extends StatefulWidget {
   MyHomePage({Key? key}) : super(key: key);
 
 
+
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
@@ -34,6 +35,7 @@ class MyHomePage extends StatefulWidget {
     String appTitle='শখ';
 
 class _MyHomePageState extends State<MyHomePage> {
+
   @override
   Widget build(BuildContext context) {
 
@@ -43,65 +45,92 @@ class _MyHomePageState extends State<MyHomePage> {
     double dynamicWidth =MediaQuery.of(context).size.width;
 
 
-    return Scaffold(
+    return WillPopScope(
+      onWillPop: ()async{
+        bool willpop =false;
+        await showDialog(
+            context: context,
+            builder: (_)=>AlertDialog(
+            title: Text('Alert'),
+              content: Text('Do You Want To Exit?'),
+              actions: [
+                ElevatedButton(
+                    onPressed:(){
+                      willpop=true;
+                      Navigator.pop(context);
+                    },
+                    child: Text('Yes')),
+                ElevatedButton(
+                    onPressed:(){
+                      Navigator.pop(context);
+                    },
+                    child: Text('No')),
+
+              ],
+        ));
+           return willpop;
+      },
+      child: Scaffold(
 
 
-      drawer: CustomAppDrawer(),
-      appBar: AppBar(
-        centerTitle: true,
-        title: Container(
-          child: Text(appTitle,style: TextStyle(
-            fontSize: 40
-          ),),
+
+        drawer: CustomAppDrawer(),
+        appBar: AppBar(
+          centerTitle: true,
+          title: Container(
+            child: Text(appTitle,style: TextStyle(
+              fontSize: 40
+            ),),
+          ),
+          backgroundColor: Colors.teal.shade400,
+
         ),
-        backgroundColor: Colors.teal.shade400,
+
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.teal,
+          foregroundColor: Colors.black,
+          child: Icon(Icons.search_rounded,size: 35,),
+          onPressed: () {
+            setState(() {
+              BottomNavigationSearch();
+            });
+          },
+          //params
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        bottomNavigationBar: AnimatedBottomNavigationBar(
+          backgroundColor: Colors.teal,
+          icons: iconList,
+          activeIndex: _bottomNavIndex,
+          gapLocation: GapLocation.center,
+          notchSmoothness: NotchSmoothness.smoothEdge,
+          onTap: (index) => setState(() =>
+          _bottomNavIndex = index),
+        ),
+
+        body: SingleChildScrollView(
+          child: Consumer<MyHomePageProvider>(builder: (context,myHomePageProvider,index){
+            return  Column(
+              children: [
+
+
+                ImageSlider(//context: context,
+                    myHomePageProvider: myHomePageProvider),
+
+                ProductCategories(context: context, homePageProvider: myHomePageProvider,),
+
+
+                FlashSale(),
+
+              ],
+            );
+
+          })
+
+        ),
+
 
       ),
-
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.teal,
-        foregroundColor: Colors.black,
-        child: Icon(Icons.search_rounded,size: 35,),
-        onPressed: () {
-          setState(() {
-            BottomNavigationSearch();
-          });
-        },
-        //params
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: AnimatedBottomNavigationBar(
-        backgroundColor: Colors.teal,
-        icons: iconList,
-        activeIndex: _bottomNavIndex,
-        gapLocation: GapLocation.center,
-        notchSmoothness: NotchSmoothness.smoothEdge,
-        onTap: (index) => setState(() =>
-        _bottomNavIndex = index),
-      ),
-
-      body: SingleChildScrollView(
-        child: Consumer<MyHomePageProvider>(builder: (context,myHomePageProvider,index){
-          return  Column(
-            children: [
-
-
-              ImageSlider(//context: context,
-                  myHomePageProvider: myHomePageProvider),
-
-              ProductCategories(context: context, homePageProvider: myHomePageProvider,),
-
-
-              FlashSale(),
-
-            ],
-          );
-
-        })
-
-      ),
-
-
     );
   }
 }
