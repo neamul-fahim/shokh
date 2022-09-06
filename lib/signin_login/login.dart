@@ -39,7 +39,7 @@ class _LogINState extends State<LogIN> {
 
                   /// Page title SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
             Padding(
-              padding: const EdgeInsets.only(top:50 ,bottom: 0,right: 0,left:0 ),
+              padding: const EdgeInsets.only(top:30 ,bottom: 0,right: 0,left:0 ),
               child: Text("LOGIN",style: TextStyle(
                   fontWeight: FontWeight.w900,
                   fontSize:35
@@ -48,34 +48,37 @@ class _LogINState extends State<LogIN> {
                /// Page title EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
 
             SizedBox(
-              height: 50,
+              height: 30,
             ),
 
 
-            ///Email field start SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+            ///Email field  SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
             CustomTextField(
                 textController: loginEmailController,
                 ErrorMsg: "This field can't be empty",
                 HintText: "Enter your email",
                 LabelText:  "Email",
-                fieldIcon: Icons.email_rounded ),
+                fieldIcon: Icons.email_rounded,
+              obscurePass: false,),
 
-            ///Email field end EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+
+            ///Email field EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
 
 
-            ///Password field start  SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+            ///Password field   SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
             CustomTextField(
                 textController: loginPassController,
                 ErrorMsg: "This field can't be empty",
                 HintText: "Enter your password",
                 LabelText:  "Password",
-                fieldIcon: Icons.remove_red_eye_rounded ),
+                fieldIcon: Icons.shield,
+                obscurePass: true,),
 
-            ///Password field end  EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+            ///Password field  EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
 
 
 
-            ///Signin button start SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+            ///Signin button SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
             Padding(
               padding: const EdgeInsets.only(left: 0,right:0 ,top: 2,bottom:0 ),
               child: Container(
@@ -94,7 +97,7 @@ class _LogINState extends State<LogIN> {
               ),
             ),
 
-            ///Signin button end EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+            ///Signin button EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
 
             Padding(
               padding: const EdgeInsets.all(15.0),
@@ -104,14 +107,14 @@ class _LogINState extends State<LogIN> {
 
                 children: [
 
-                  ///  (child-1) Asking if the user have an existing account  SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+                  /// Asking if the user have an existing account  SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
                   Text("Don't have an account?",style: TextStyle(
                     color: Colors.deepOrangeAccent,),
                   ),
-                  ///  (child-1) Asking if the user have an existing account  EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+                  /// Asking if the user have an existing account  EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
 
 
-                  ///(child-2) Goto signin page if don't have an account  SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+                  /// Goto signin page if don't have an account  SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
 
                   InkWell(
                       onTap: (){
@@ -129,7 +132,7 @@ class _LogINState extends State<LogIN> {
                           )
                       )
                   ),
-                  ///(child-2) Goto signin page if don't have an account  EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+                  /// Goto signin page if don't have an account  EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
 
 
                 ],
@@ -153,7 +156,7 @@ class _LogINState extends State<LogIN> {
       Navigator.push(context, MaterialPageRoute(builder: (context)=>MyHomePage()));
 
     }).catchError((error){
-      Fluttertoast.showToast(msg: "Login error");
+      Fluttertoast.showToast(timeInSecForIosWeb: 3,msg: error.message);///Here (.message) is a firebase defined message which describes the specific error occurred
     });
 
   }

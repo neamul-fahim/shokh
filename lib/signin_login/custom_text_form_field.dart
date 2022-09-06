@@ -12,13 +12,14 @@ class CustomTextField extends StatefulWidget {
   String HintText;
   String LabelText;
   IconData fieldIcon;
+  bool obscurePass;
   CustomTextField({Key? key,
     required this.textController,
     required this.ErrorMsg,
     required this.HintText,
     required this.LabelText,
     required this.fieldIcon,
-
+    required this.obscurePass,
 
   }) : super(key: key);
 
@@ -27,13 +28,15 @@ class CustomTextField extends StatefulWidget {
 }
 
 
+
 class _CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(20.0),
+      padding: const EdgeInsets.all(10.0),
       child: TextFormField(
         controller: widget.textController,
+             ///validation of textformfield SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
         validator: (inputString){
           if(inputString==null || inputString.isEmpty)
           {
@@ -46,15 +49,52 @@ class _CustomTextFieldState extends State<CustomTextField> {
           return null;
 
         },
+             ///Validation of textformfield EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+
+
+
         showCursor: true,
         cursorColor: Colors.indigo,
+        obscureText: widget.obscurePass,
+        obscuringCharacter: "*",
         // cursorHeight: 30,
+
+        ///Decoration SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
         decoration: InputDecoration(
-          suffixIcon: Icon(widget.fieldIcon,
-            color: Colors.black,
+
+          ///Password obscure or show eye button   SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+    suffixIcon: InkWell(
+
+          onTap: (){
+            setState(() {
+              if(widget.fieldIcon==Icons.shield || widget.fieldIcon==Icons.remove_red_eye_rounded) {
+                if (widget.obscurePass == false)
+                {
+                  widget.obscurePass = true;
+                  widget.fieldIcon=Icons.shield;
+                }
+                else
+                {
+                  widget.obscurePass = false;
+                  widget.fieldIcon=Icons.remove_red_eye_rounded;
+                }
+              }
+
+            });
+
+          },
+            child: Icon(widget.fieldIcon,
+              color: Colors.black,
+            ),
           ),
+
+          ///Password obscure or show eye button   EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+
+
           hintText: widget.HintText,
           label:Text(widget.LabelText),
+
+
           labelStyle: TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.w800
@@ -106,6 +146,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
 
 
         ),
+
+        ///Decoration EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
       ),
     );
   }

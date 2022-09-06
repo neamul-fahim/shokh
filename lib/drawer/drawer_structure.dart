@@ -10,6 +10,7 @@ import 'package:sokh/drawer/weather.dart';
 import 'package:sokh/my_home_page/my_home_page.dart';
 
 import '../provider/app_drawer_provider.dart';
+import '../signin_login/login.dart';
 
 class CustomAppDrawer extends StatefulWidget {
   const CustomAppDrawer({Key? key}) : super(key: key);
@@ -66,8 +67,8 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
                   drawerProperty(Icons.add_circle, 'Add Post',context,()=>MyHomePage()),
                   drawerProperty(Icons.notifications_active, 'Notification',context,()=>MyHomePage()),
                   //drawerProperty(Icons.cloud_rounded, 'Weather',context,()=>Weather()),
-                  drawerProperty(Icons.cloud_rounded, 'Login',context,()=>Login()),
-                 drawerProperty(Icons.logout_rounded, 'Logout',context,()=>Login()),
+                  drawerProperty(Icons.cloud_rounded, 'Login',context,()=>LogIN()),
+                 drawerProperty(Icons.logout_rounded, 'Logout',context,()=>LogIN()),
 
                 ],
               ),

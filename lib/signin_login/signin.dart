@@ -2,9 +2,11 @@
 
 import 'dart:js';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:sokh/model_class/user_data_model.dart';
 import 'package:sokh/signin_login/custom_text_form_field.dart';
 import 'package:sokh/signin_login/login.dart';
 
@@ -18,6 +20,8 @@ class SignIN extends StatefulWidget {
 
   FirebaseAuth _firebaseAuth=FirebaseAuth.instance;
   GlobalKey<FormState> _signinKey= GlobalKey<FormState>();
+  TextEditingController signinNameController=TextEditingController();
+  TextEditingController signinPhoneNumberController=TextEditingController();
   TextEditingController signinEmailController=TextEditingController();
   TextEditingController signinPassController=TextEditingController();
   TextEditingController signinConfirmPassController=TextEditingController();
@@ -38,53 +42,78 @@ class _SignINState extends State<SignIN> {
         child: Column(
           children: [
 
-            /// (child-1) Page title SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+            ///  Page title SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
             Padding(
-              padding: const EdgeInsets.only(top:50 ,bottom: 0,right: 0,left:0 ),
+              padding: const EdgeInsets.only(top:30,bottom: 0,right: 0,left:0 ),
               child: Text("SIGNIN",style: TextStyle(
                   fontWeight: FontWeight.w900,
                   fontSize:35
               ),),
             ),
-            /// (child-1) Page title EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+            ///  Page title EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
 
             SizedBox(
-              height: 50,
+              height: 30,
             ),
 
+            /// Name field  SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+
+            CustomTextField(
+              textController: signinNameController,
+              ErrorMsg: "This field can't be empty",
+              HintText: "Enter your name",
+              LabelText:  "Name",
+              fieldIcon: Icons.person,
+              obscurePass: false,),
+
+            /// Name field EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
 
 
-            /// (child-1) Email field start SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+            /// Phone number field SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+            CustomTextField(
+              textController: signinPhoneNumberController,
+              ErrorMsg: "This field can't be empty",
+              HintText: "Enter your phone number",
+              LabelText:  "Phone number",
+              fieldIcon: Icons.phone,
+              obscurePass: false,),
+            /// Phone number field EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+
+
+            /// Email field  SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
             CustomTextField(
                 textController: signinEmailController,
                 ErrorMsg: "This field can't be empty",
                 HintText: "Enter your email",
                 LabelText:  "Email",
-                fieldIcon: Icons.email_rounded ),
+                fieldIcon: Icons.email_rounded,
+                obscurePass: false,),
 
-            /// (child-1)Email field end EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+            /// Email field EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
 
-            ///(child-1)Password field start  SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+            ///Password field  SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
             CustomTextField(
                 textController: signinPassController,
                 ErrorMsg: "This field can't be empty",
                 HintText: "Enter your password",
                 LabelText:  "Password",
-                fieldIcon: Icons.remove_red_eye_rounded ),
+                fieldIcon: Icons.shield,
+                obscurePass: true,),
 
-            ///(child-1)Password field end  EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+            ///Password field   EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
 
-            ///Confirm password field start  SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+            ///Confirm password field   SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
             CustomTextField(
                 textController: signinConfirmPassController,
                 ErrorMsg: "This field can't be empty",
                 HintText: "Retype your password",
                 LabelText:  "Confirm password",
-                fieldIcon: Icons.remove_red_eye_rounded ),
+                fieldIcon: Icons.shield,
+                obscurePass: true,),
 
-            ///Confirm password field end  EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+            ///Confirm password field  EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
 
-            ///(child-1) Signin button start SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+            /// Signin button  SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
             Padding(
               padding: const EdgeInsets.only(left: 0,right:0 ,top: 2,bottom:0 ),
               child: Container(
@@ -104,7 +133,7 @@ class _SignINState extends State<SignIN> {
               ),
             ),
 
-                       ///(child-1) Signin button end EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+                       /// Signin button EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
 
 
 
@@ -116,14 +145,14 @@ class _SignINState extends State<SignIN> {
 
                 children: [
 
-                  ///  (child-1) Asking if the user have an existing account  SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+                  /// Asking if the user have an existing account  SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
                   Text("Have an account?",style: TextStyle(
                     color: Colors.deepOrangeAccent,),
                   ),
-                  ///  (child-1) Asking if the user have an existing account  EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+                  /// Asking if the user have an existing account  EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
 
 
-                      ///(child-2) Goto login page if have an account  SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+                      /// Goto login page if have an account  SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
                   InkWell(
                       onTap: (){
                         Navigator.pop(context,MaterialPageRoute(builder: (context)=>LogIN()));
@@ -142,7 +171,7 @@ class _SignINState extends State<SignIN> {
                       )
                   ),
 
-                  ///(child-2) Goto login page if have an account  EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+                  /// Goto login page if have an account  EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
 
 
                 ],
@@ -155,16 +184,36 @@ class _SignINState extends State<SignIN> {
     );
   }
 }
-
-  fireBaseSignin(String email,String password,BuildContext context)async {
+                    ///To signup using FirebaseAuth SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+         void fireBaseSignin(String email,String password,BuildContext context)async {
 
   await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password).then((value){
 
     Fluttertoast.showToast(msg: "Login successful");
-    loginEmailController.text=signinEmailController.text;
+       saveUserData();///saving user data
+    loginEmailController.text=signinEmailController.text;///if signup is successful the login page will auto fill with signup values
     loginPassController.text=signinPassController.text;
     Navigator.push(context, MaterialPageRoute(builder: (context)=>LogIN()));
   }).catchError((error) {
-    Fluttertoast.showToast(msg: "there is a problem");
+    Fluttertoast.showToast(timeInSecForIosWeb: 3,msg: error.message);///Here (.message) is a firebase defined message which describes the specific error occurred
   });
   }
+
+            ///To signup using FirebaseAuth  EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+
+
+        /// TO save signup data to firestore SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+  void saveUserData ()async{
+     FirebaseFirestore firebaseFirestore=FirebaseFirestore.instance;
+     User? user=FirebaseAuth.instance.currentUser;
+     UserDataModel userDataModel=UserDataModel(
+       uid: user!.uid,
+       name: signinNameController.text,
+       email: signinEmailController.text,
+       phone: signinPhoneNumberController.text,
+     );
+
+     await firebaseFirestore.collection("user info").doc(user.uid).set(userDataModel.toMap());
+     Fluttertoast.showToast(msg: "Data saved successfully");
+  }
+         /// TO save signup data to firestore EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE

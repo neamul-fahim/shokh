@@ -40,7 +40,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-       home: FirebaseAuth.instance.currentUser==null? LogIN():MyHomePage()
+       home: MyHomePage()
+       ///FirebaseAuth.instance.currentUser==null? LogIN():MyHomePage() ///comment out if you want to show the login page on start
     );
   }
 }
