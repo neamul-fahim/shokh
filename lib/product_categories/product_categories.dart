@@ -34,52 +34,73 @@ class _ProductCategoriesState extends State<ProductCategories> {
 
 
     return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: PhysicalModel(
-        color: Colors.white38,
-        shadowColor: Colors.black,
-        shape: BoxShape.circle,
-        elevation: 20,
+      padding: const EdgeInsets.only(top:8.0,left: 2,right: 2),
+      child: Container(
+        decoration: BoxDecoration(
+          //color:Colors.black,
+          borderRadius: BorderRadius.circular(20),
+        ),
         child: Stack(
-         // alignment: AlignmentDirectional.topStart,
           children: [
-            Column(
-              children: [
-                Row(
-                  children: [
-                    Spacer(),
-                       for(int i=0;i<=4;i++)
-                    CustomCircleContainer(productPic:
-                    widget.homePageProvider.myHomePageModelClass.productCategoryPicAndDescription![i].categoryPic.toString(),
-                      productDescription:
-                      widget.homePageProvider.myHomePageModelClass.productCategoryPicAndDescription![i].categoryDescription.toString(),
-                      //index: i,
-                    ),
-                    Spacer(),
+            Container(
+              height: dynamicHeight*0.12,
+              //width: dynamicWidth,
+              decoration: BoxDecoration(
+                color:Colors.teal,
+                borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10),bottomRight: Radius.circular(10)),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: PhysicalModel(
+              color: Colors.grey.shade200,
+              shadowColor: Colors.black,
+              shape: BoxShape.circle,
+              elevation: 20,
+              child: Stack(
+               // alignment: AlignmentDirectional.topStart,
+                children: [
+                  Column(
+                    children: [
+                      Row(
+                        children: [
+                          Spacer(),
+                             for(int i=0;i<=4;i++)
+                          CustomCircleContainer(productPic:
+                          widget.homePageProvider.myHomePageModelClass.productCategoryPicAndDescription![i].categoryPic.toString(),
+                            productDescription:
+                            widget.homePageProvider.myHomePageModelClass.productCategoryPicAndDescription![i].categoryDescription.toString(),
+                            //index: i,
+                          ),
+                          Spacer(),
 
-                  ],
-                ),
-                Row(
-                  children: [
-                    Spacer(),
-                    for(int i=5;i<=7;i++)
-                      CustomCircleContainer(productPic: productCatPicAndName.productPic[i],
-                        productDescription: productCatPicAndName.productDescription[i],
-                        //index: i,
+                        ],
                       ),
-                    Spacer(),
+                      Row(
+                        children: [
+                          Spacer(),
+                          for(int i=5;i<=7;i++)
+                            CustomCircleContainer(productPic: productCatPicAndName.productPic[i],
+                              productDescription: productCatPicAndName.productDescription[i],
+                              //index: i,
+                            ),
+                          Spacer(),
 
-                  ],
-                ),
-              ],
-            )
+                        ],
+                      ),
+                    ],
+                  )
 
 
 
 
 
 
-          ],
+                ],
+              ),
+          ),
+            ),
+        ]
         ),
       ),
     );

@@ -64,6 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
       child: Scaffold(
         drawer: CustomAppDrawer(),
+
         appBar: AppBar(
           centerTitle: true,
           title: Container(

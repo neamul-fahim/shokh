@@ -5,6 +5,7 @@
 //import 'dart:html';
 import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
@@ -52,24 +53,24 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
                 borderRadius: BorderRadius.circular(20),
               ),
 
-              child: Column(
-                children:[
+              child: Padding(
+                padding: const EdgeInsets.only(top: 85.0),
+                child: Column(
+                  children:[
 
-                  /// Profile pic SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
-                  Padding(
-                    padding: EdgeInsets.all(12),
-                    child: InkWell(
+                    /// Profile pic SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+                    InkWell(
                       onTap: (){
                        SelectImage(ImageSource.gallery);
                       },
-                      child: 
+                      child:
                       Container(
-                        height: dynamicWidth*0.18,
-                        width: dynamicWidth*0.18,
+                        height: dynamicWidth*0.4,
+                        width: dynamicWidth*0.4,
                         child: finalImageFile==null?
 
-                        Image.asset("assets/image/profie_pic.jpg"):
-                        Image.file(finalImageFile!),
+                        Image.asset("assets/image/profie_pic.jpg",fit: BoxFit.cover,):
+                        Image.file(finalImageFile!,fit: BoxFit.cover,),
                         decoration: BoxDecoration(
                           color: Colors.black,
                           borderRadius: BorderRadius.circular(30),
@@ -84,22 +85,34 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
                       //       borderRadius: BorderRadius.circular(30),
                       //   ),
                     ),
-                  ),
-                  /// Profile pic EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+                    /// Profile pic EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
 
-                  Text(appDrawerProvider.appDrawerModelClass.profileName.toString()),///User name
+                    Text(appDrawerProvider.appDrawerModelClass.profileName.toString(),
+                        style:TextStyle(fontSize: 28,fontWeight:FontWeight.w400 ) ),///User name
 
-                  /// Drawer options SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
 
-                  drawerProperty(Icons.home_rounded, 'Home',context,()=>MyHomePage()),
-                  drawerProperty(Icons.add_circle, 'Add Post',context,()=>MyHomePage()),
-                  drawerProperty(Icons.notifications_active, 'Notification',context,()=>MyHomePage()),
-                  //drawerProperty(Icons.cloud_rounded, 'Weather',context,()=>Weather()),
-                  drawerProperty(Icons.cloud_rounded, 'Login',context,()=>LogIN()),
-                 drawerProperty(Icons.logout_rounded, 'Logout',context,()=>LogIN()),
+                   const SizedBox(
+                      height: 60,
+                    ),
+                    /// Drawer options SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
 
-                  /// Drawer options EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
-                ],
+                    drawerProperty(Icons.home_rounded, 'Home',context,()=>MyHomePage()),
+                    drawerProperty(Icons.add_circle, 'Add Post',context,()=>MyHomePage()),
+                    drawerProperty(Icons.notifications_active, 'Notification',context,()=>MyHomePage()),
+                    //drawerProperty(Icons.cloud_rounded, 'Weather',context,()=>Weather()),
+                   const Divider(
+                      color: Colors.black,
+                      thickness: 2,
+                      height: 20,
+                        indent: 8,
+                      endIndent: 8,
+                    ),
+                    drawerProperty(Icons.cloud_rounded, 'Login',context,()=>LogIN()),
+                   drawerProperty(Icons.logout_rounded, 'Logout',context,()=>LogIN()),
+
+                    /// Drawer options EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+                  ],
+                ),
               ),
             );
 
@@ -132,7 +145,7 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
  Container drawerProperty(IconData drawerOptionIcon,String drawerOptionName,BuildContext context,Widget Function() className){
   return Container(
     child:Padding(
-      padding: const EdgeInsets.all(15.0),
+      padding: const EdgeInsets.all(8.0),
       child: InkWell(
         onTap: (){
           if(IconData==Icons.logout_rounded)///for logout
@@ -152,12 +165,12 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
         },
         child: Row(
           children: [
-            Icon(drawerOptionIcon,color: Colors.black,),
+            Icon(drawerOptionIcon,color: Colors.black,size: 35),
             SizedBox(
               width: 10,
             ),
             Text(drawerOptionName,style: TextStyle(
-              fontSize: 18,
+              fontSize: 22,
               fontWeight: FontWeight.w400
 
             ),),

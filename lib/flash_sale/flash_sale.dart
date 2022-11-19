@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:sokh/flash_sale/flash_sale_custom_container.dart';
 
 
@@ -21,8 +22,8 @@ class _FlashSaleState extends State<FlashSale> {
       padding: const EdgeInsets.only(top: 25.0),
       child: Container(
         decoration: BoxDecoration(
-
-          color: Colors.white10,
+          borderRadius: BorderRadius.circular(10),
+          color: Colors.grey.shade200,
         ),
 
              //height: dynamicHeight*0.3,
@@ -33,15 +34,18 @@ class _FlashSaleState extends State<FlashSale> {
               children: [
                 Spacer(flex: 1),
                 Text("FLASH SALE!!!!",
-                  style: TextStyle(color:Colors.red.shade900,fontSize:30 ,fontWeight:FontWeight.w600,wordSpacing: 5 ),),
+                  style: TextStyle(color:Colors.red.shade900,fontSize:30 ,fontWeight:FontWeight.w600 ),),
                Spacer(flex: 5),
 
                 InkWell(
+                    highlightColor: Colors.teal.shade200,
+                    borderRadius: BorderRadius.circular(5),
+                    hoverColor: Colors.teal.shade200,
                   onTap: (){
-
+                 //Fluttertoast.showToast(msg: "heeeeeeeeeeeeeeeeeeeeeeeee");
                   },
                     child: Text("More>",
-                      style: TextStyle(color:Colors.black,fontSize:18 ,fontWeight:FontWeight.w400,wordSpacing: 5 ),)),
+                      style: TextStyle(color:Colors.black,fontSize:18 ,fontWeight:FontWeight.w400),)),
                 Spacer(flex: 1),
               ],
             ),

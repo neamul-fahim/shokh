@@ -59,7 +59,7 @@ class _FlashSaleCustomContainerState extends State<FlashSaleCustomContainer> {
                 ),
               ),
               ///Product pic EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
-              const VerticalDivider(color: Colors.red,thickness: 0.8,indent: 30,endIndent: 30,),
+              const VerticalDivider(color: Colors.black,thickness: 0.8,indent: 30,endIndent: 30,),
        ///Product description,price,rating etc SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
               Padding(
                  padding: const EdgeInsets.all(10.0),
@@ -72,8 +72,9 @@ class _FlashSaleCustomContainerState extends State<FlashSaleCustomContainer> {
                    child: Column(
                      children: [
 
-                       TextContainer(dynamicWidth,"It is a four wheeler with tremendous horse power",Colors.black),
-                       TextContainer(dynamicWidth,"Price: \$$price",Colors.red),
+                       TextContainer(dynamicWidth,"It is a four wheeler with tremendous horse power",
+                           Colors.black,FontWeight.w400,18),
+                       TextContainer(dynamicWidth,"Price: \$$price",Colors.red,FontWeight.w700,18),
 
                      ],
                    ),
@@ -93,13 +94,13 @@ class _FlashSaleCustomContainerState extends State<FlashSaleCustomContainer> {
 
 
 
- Widget TextContainer(double dynamicWidth,String textData,Color textColor){
+ Widget TextContainer(double dynamicWidth,String textData,Color textColor,FontWeight fontWeight,double fontSize){
   return Container(
      //color: Colors.red,
      width: dynamicWidth*0.35,
      child: Padding(
        padding: const EdgeInsets.all(8.0),
-       child: Text(textData,style: TextStyle(color: textColor),),
+       child: Text(textData,style: TextStyle(color: textColor,fontWeight:fontWeight ,fontSize: fontSize),),
      ),
    );
  }
