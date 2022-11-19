@@ -2,11 +2,15 @@
 //import 'package:first_flutter_p/my_home_page.dart';
 //import 'package:first_flutter_p/signup/signup.dart';
 
+//import 'dart:html';
+import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
-import 'package:sokh/signup_and_login/log_in.dart';
-import 'package:sokh/drawer/weather.dart';
+//import 'package:sokh/drawer/select_image.dart';
+//import 'package:sokh/signup_and_login/log_in.dart';
+//import 'package:sokh/drawer/weather.dart';
 import 'package:sokh/my_home_page/my_home_page.dart';
 
 import '../provider/app_drawer_provider.dart';
@@ -20,6 +24,8 @@ class CustomAppDrawer extends StatefulWidget {
 }
 
 
+   // File ? imageFile;
+   // File ? finalImageFile;
 
 
 
@@ -31,8 +37,11 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
 
     double dynamicHeight=MediaQuery.of(context).size.height;
     double dynamicWidth=MediaQuery.of(context).size.width;
+    //final File imageFile;
+    //XFile ? pick;
+   // var pickedImage;
     return
-      Consumer <AppDrawerProvider>(builder: (context,appDrawerProvider,index)
+           Consumer <AppDrawerProvider>(builder: (context,appDrawerProvider,index)
           {
             return Container(
               height: dynamicHeight,
@@ -45,23 +54,42 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
 
               child: Column(
                 children:[
+
+                  /// Profile pic SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
                   Padding(
                     padding: EdgeInsets.all(12),
-                    child: Container(
+                    child: InkWell(
+                      onTap: (){
+                       SelectImage(ImageSource.gallery);
+                      },
+                      child: 
+                      Container(
+                        height: dynamicWidth*0.18,
+                        width: dynamicWidth*0.18,
+                        child: finalImageFile==null?
 
-                      height: dynamicWidth*0.18,
-                      width: dynamicWidth*0.18,
-                      decoration: BoxDecoration(
+                        Image.asset("assets/image/profie_pic.jpg"):
+                        Image.file(finalImageFile!),
+                        decoration: BoxDecoration(
                           color: Colors.black,
                           borderRadius: BorderRadius.circular(30),
-                          image: DecorationImage(image:
-                          AssetImage(appDrawerProvider.appDrawerModelClass.profilePic.toString())
-                          )
+                        ),
                       ),
+                      //     :Container(
+                      //   height: dynamicWidth*0.18,
+                      //   width: dynamicWidth*0.18,
+                      //   child:Image.file(finalImageFile!),
+                      //   decoration: BoxDecoration(
+                      //       color: Colors.black,
+                      //       borderRadius: BorderRadius.circular(30),
+                      //   ),
                     ),
                   ),
+                  /// Profile pic EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
 
-                  Text(appDrawerProvider.appDrawerModelClass.profileName.toString()),
+                  Text(appDrawerProvider.appDrawerModelClass.profileName.toString()),///User name
+
+                  /// Drawer options SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
 
                   drawerProperty(Icons.home_rounded, 'Home',context,()=>MyHomePage()),
                   drawerProperty(Icons.add_circle, 'Add Post',context,()=>MyHomePage()),
@@ -70,15 +98,37 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
                   drawerProperty(Icons.cloud_rounded, 'Login',context,()=>LogIN()),
                  drawerProperty(Icons.logout_rounded, 'Logout',context,()=>LogIN()),
 
+                  /// Drawer options EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
                 ],
               ),
             );
+
           }
+
       );
+
+
+
+  }
+  XFile? imageXFile;
+  File? finalImageFile;
+   File? tempImage;
+  Future SelectImage(source)async{
+    final ImagePicker _picker=ImagePicker();
+    imageXFile= await _picker.pickImage(source: source);
+
+    if (imageXFile==null) return;
+      tempImage=File(imageXFile!.path);
+    setState(() {
+      finalImageFile=tempImage;
+    });
+     //return imageFile;
+   // final XFile? video= await _picker.pickVideo(source: source);
+
   }
 }
 
-
+       /// Function to determine what action is needed to perform when drawer option is pressed   SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
  Container drawerProperty(IconData drawerOptionIcon,String drawerOptionName,BuildContext context,Widget Function() className){
   return Container(
     child:Padding(
@@ -117,7 +167,7 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
     )
   );
 }
-
+   /// Function to determine what action is needed to perform when drawer option is pressed EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
    // void pageRout(BuildContext context,className){
    // Navigator.push(context, MaterialPageRoute(builder: (context)=>className));
    //

@@ -24,8 +24,13 @@ class LogIN extends StatefulWidget {
 
 
 class _LogINState extends State<LogIN> {
+
+
+  var isHover=true;
+  var transform;
   @override
   Widget build(BuildContext context) {
+
 
     double dynamicHeight=MediaQuery.of(context).size.height;
     double dynamicWidth=MediaQuery.of(context).size.width;
@@ -53,51 +58,85 @@ class _LogINState extends State<LogIN> {
 
 
             ///Email field  SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
-            CustomTextField(
-                textController: loginEmailController,
-                ErrorMsg: "This field can't be empty",
-                HintText: "Enter your email",
-                LabelText:  "Email",
-                fieldIcon: Icons.email_rounded,
-              obscurePass: false,),
+            Container(
+              height:  dynamicHeight*0.15,
+
+              width: dynamicHeight*0.9999,
+
+              child: CustomTextField(
+                  textController: loginEmailController,
+                  ErrorMsg: "This field can't be empty",
+                  HintText: "Enter your email",
+                  LabelText:  "Email",
+                  fieldIcon: Icons.email_rounded,
+                obscurePass: false,),
+            ),
 
 
             ///Email field EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
 
 
             ///Password field   SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
-            CustomTextField(
-                textController: loginPassController,
-                ErrorMsg: "This field can't be empty",
-                HintText: "Enter your password",
-                LabelText:  "Password",
-                fieldIcon: Icons.shield,
-                obscurePass: true,),
+            Container(
+              height:  dynamicHeight*0.15,
+
+              width: dynamicHeight*0.9999,
+              child: CustomTextField(
+                  textController: loginPassController,
+                  ErrorMsg: "This field can't be empty",
+                  HintText: "Enter your password",
+                  LabelText:  "Password",
+                  fieldIcon: Icons.shield,
+                  obscurePass: true,),
+            ),
 
             ///Password field  EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
 
 
 
-            ///Signin button SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+            ///Login button SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+
+            isHover?
             Padding(
               padding: const EdgeInsets.only(left: 0,right:0 ,top: 2,bottom:0 ),
-              child: Container(
-                height: dynamicHeight*0.06,
-                width: dynamicWidth*0.4,
+              child: MouseRegion(
+                onEnter: (event)=>onHover(true),
+                onExit: (event)=>onHover(false),
+                child: Container(
+                  height: dynamicHeight*0.06,
+                  width: dynamicWidth*0.4,
 
 
-                child: ElevatedButton(
+                  child: ElevatedButton(
 
-                    onPressed:() {
-                      if(_loginKey.currentState!.validate()){
-                        fireBaseLogin(loginEmailController.text, loginPassController.text, context);
-                      }
-                    },
-                    child: Text("LOGIN")),
+                      onPressed:() {
+                        if(_loginKey.currentState!.validate()){
+                          fireBaseLogin(loginEmailController.text, loginPassController.text, context);
+                        }
+                      },
+                      child: Text("LOGIN")),
+                ),
+              ),
+            ):
+            Padding(
+              padding: const EdgeInsets.only(left: 0,right:0 ,top: 2,bottom:0 ),
+              child: MouseRegion(
+                onEnter: (event)=>onHover(true),
+                onExit: (event)=>onHover(false),
+                child: AnimatedContainer(
+                  color: Colors.red,
+                  duration: Duration(milliseconds: 200),
+                  transform: transform,
+                  height: dynamicHeight*0.06,
+                  width: dynamicWidth*0.095,
+
+
+                  child: Center(child: Text("LOGIN")),
+                ),
               ),
             ),
 
-            ///Signin button EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+            ///Login button EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
 
             Padding(
               padding: const EdgeInsets.all(15.0),
@@ -108,6 +147,7 @@ class _LogINState extends State<LogIN> {
                 children: [
 
                   /// Asking if the user have an existing account  SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+
                   Text("Don't have an account?",style: TextStyle(
                     color: Colors.deepOrangeAccent,),
                   ),
@@ -144,6 +184,24 @@ class _LogINState extends State<LogIN> {
       ),
     );
 
+  }
+  onHover(bool hover){
+    final anim=Matrix4.identity()..translate(200,0,0);
+
+
+    setState(() {
+      if(hover==true) {
+        if (_loginKey.currentState!.validate() == true)
+          isHover = true;
+        else {
+          isHover = false;
+              transform=anim;
+        }
+      }
+      else
+       transform=Matrix4.identity();
+
+    });
   }
 }
 

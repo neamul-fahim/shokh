@@ -36,8 +36,6 @@ class MyHomePageRepository{
               for(int i=0;i<productPic.length;i++)
                 productPic[i]
             ],
-
-
             productCategoryPicAndDescription:
             [
               for(int i=0;i<productPic.length;i++)
@@ -49,11 +47,6 @@ class MyHomePageRepository{
                 productDescription[i]
               ),
 
-
-
             ]
           );
-
-
-
 }

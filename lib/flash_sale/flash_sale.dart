@@ -17,23 +17,58 @@ class _FlashSaleState extends State<FlashSale> {
     double dynamicHeight =MediaQuery.of(context).size.height;
     double dynamicWidth =MediaQuery.of(context).size.width;
 
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.black12
-      ),
+    return Padding(
+      padding: const EdgeInsets.only(top: 25.0),
+      child: Container(
+        decoration: BoxDecoration(
 
-           //height: dynamicHeight*0.3,
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
+          color: Colors.white10,
+        ),
 
-        child: Row(
-         children:  [
-           FlashSaleCustomContainer(),
-           FlashSaleCustomContainer(),
-           FlashSaleCustomContainer(),
-           FlashSaleCustomContainer(),
+             //height: dynamicHeight*0.3,
+        child: Column(
+          children: [
+            /// "FLASH SALE"  and "MORE"  SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+            Row(
+              children: [
+                Spacer(flex: 1),
+                Text("FLASH SALE!!!!",
+                  style: TextStyle(color:Colors.red.shade900,fontSize:30 ,fontWeight:FontWeight.w600,wordSpacing: 5 ),),
+               Spacer(flex: 5),
 
-         ],
+                InkWell(
+                  onTap: (){
+
+                  },
+                    child: Text("More>",
+                      style: TextStyle(color:Colors.black,fontSize:18 ,fontWeight:FontWeight.w400,wordSpacing: 5 ),)),
+                Spacer(flex: 1),
+              ],
+            ),
+            /// "FLASH SALE"  and "MORE"  EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+
+
+            ///Product pic,description,price etc SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+
+              child: Container(
+                color: Colors.white12,
+                child: Row(
+                 children:  [
+                   FlashSaleCustomContainer(),
+                   FlashSaleCustomContainer(),
+                   FlashSaleCustomContainer(),
+                   FlashSaleCustomContainer(),
+
+                 ],
+                ),
+              ),
+            ),
+
+            ///Product pic,description,price etc EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+
+          ],
         ),
       ),
     );

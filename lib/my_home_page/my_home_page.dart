@@ -9,10 +9,7 @@ import '../bottom_navigation_search_page.dart';
 import '../flash_sale/flash_sale.dart';
 import '../image_slider/image_slider.dart';
 
-
-
-
-List<IconData>iconList=[
+List<IconData> iconList = [
   Icons.home,
   Icons.category_rounded,
   Icons.chat_bubble_rounded,
@@ -20,76 +17,72 @@ List<IconData>iconList=[
 ];
 var _bottomNavIndex = 0;
 
-
-
-
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key? key}) : super(key: key);
-
-
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-    String appTitle='শখ';
+String appTitle = 'শখ';
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
+    Provider.of<MyHomePageProvider>(context, listen: false)
+        .initializemyHomePageModelClass();
 
-    Provider.of<MyHomePageProvider>(context,listen: false).initializemyHomePageModelClass();
+    double dynamicHeight = MediaQuery.of(context).size.height;
+    double dynamicWidth = MediaQuery.of(context).size.width;
 
-    double dynamicHeight =MediaQuery.of(context).size.height;
-    double dynamicWidth =MediaQuery.of(context).size.width;
-
-
+    ///TO get out of the app (pop up massage)  SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
     return WillPopScope(
-      onWillPop: ()async{
-        bool willpop =false;
+      onWillPop: () async {
+        bool willpop = false;
         await showDialog(
             context: context,
-            builder: (_)=>AlertDialog(
-            title: Text('Alert'),
-              content: Text('Do You Want To Exit?'),
-              actions: [
-                ElevatedButton(
-                    onPressed:(){
-                      willpop=true;
-                      Navigator.pop(context);
-                    },
-                    child: Text('Yes')),
-                ElevatedButton(
-                    onPressed:(){
-                      Navigator.pop(context);
-                    },
-                    child: Text('No')),
-
-              ],
-        ));
-           return willpop;
+            builder: (_) => AlertDialog(
+                  title: Text('Alert'),
+                  content: Text('Do You Want To Exit?'),
+                  actions: [
+                    ElevatedButton(
+                        onPressed: () {
+                          willpop = true;
+                          Navigator.pop(context);
+                        },
+                        child: Text('Yes')),
+                    ElevatedButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: Text('No')),
+                  ],
+                ));
+        return willpop;
       },
+      ///TO get out of the app (pop up massage)  EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+
       child: Scaffold(
-
-
-
         drawer: CustomAppDrawer(),
         appBar: AppBar(
           centerTitle: true,
           title: Container(
-            child: Text(appTitle,style: TextStyle(
-              fontSize: 40
-            ),),
+            child: Text(
+              appTitle,
+              style: TextStyle(fontSize: 40),
+            ),
           ),
           backgroundColor: Colors.teal.shade400,
-
         ),
 
+        ///Bottom navigation bar SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
         floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.teal,
           foregroundColor: Colors.black,
-          child: Icon(Icons.search_rounded,size: 35,),
+          child: Icon(
+            Icons.search_rounded,
+            size: 35,
+          ),
           onPressed: () {
             setState(() {
               BottomNavigationSearch();
@@ -104,35 +97,28 @@ class _MyHomePageState extends State<MyHomePage> {
           activeIndex: _bottomNavIndex,
           gapLocation: GapLocation.center,
           notchSmoothness: NotchSmoothness.smoothEdge,
-          onTap: (index) => setState(() =>
-          _bottomNavIndex = index),
+          onTap: (index) => setState(() => _bottomNavIndex = index),
         ),
 
-        body: SingleChildScrollView(
-          child: Consumer<MyHomePageProvider>(builder: (context,myHomePageProvider,index){
-            return  Column(
-              children: [
+        ///Bottom navigation bar EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
 
 
-                ImageSlider(//context: context,
-                    myHomePageProvider: myHomePageProvider),
-
-                ProductCategories(context: context, homePageProvider: myHomePageProvider,),
-
-
-                FlashSale(),
-
-              ],
-            );
-
-          })
-
-        ),
-
-
+        body: SingleChildScrollView(child: Consumer<MyHomePageProvider>(
+            builder: (context, myHomePageProvider, index) {
+          return Column(
+            children: [
+              ImageSlider(
+                  //context: context,
+                  myHomePageProvider: myHomePageProvider),
+              ProductCategories(
+                context: context,
+                homePageProvider: myHomePageProvider,
+              ),
+              FlashSale(),
+            ],
+          );
+        })),
       ),
     );
   }
 }
-
-

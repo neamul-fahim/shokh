@@ -30,48 +30,61 @@ class _FlashSaleCustomContainerState extends State<FlashSaleCustomContainer> {
     return Padding(
       padding: const EdgeInsets.all(3.0),
       child: Container(
-        //color: Colors.red,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding:  EdgeInsets.all(10.0),
-              child: Container(
-                height: dynamicHeight*0.3,
-               width: dynamicWidth*0.5,
-                decoration: BoxDecoration(
-                  color: Colors.black,
-                  borderRadius: BorderRadius.circular(5),
-                  image:  DecorationImage(
-                    image: AssetImage(flashSaleProductPicAndDescription.productPic[0]),
-                    fit: BoxFit.cover
+      decoration: BoxDecoration(
+        color: Colors.teal.shade100,
+        borderRadius: BorderRadius.circular(20)
 
-                  )
+      ),
+
+        child: IntrinsicHeight(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ///Product pic SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+              Padding(
+                padding:  EdgeInsets.all(10.0),
+                child: Container(
+                  height: dynamicHeight*0.3,
+                 width: dynamicWidth*0.5,
+                  decoration: BoxDecoration(
+                    color: Colors.black,
+                    borderRadius: BorderRadius.circular(20),
+                    image:  DecorationImage(
+                      image: AssetImage(flashSaleProductPicAndDescription.productPic[0]),
+                      fit: BoxFit.cover
+
+                    )
+                  ),
                 ),
               ),
-            ),
+              ///Product pic EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+              const VerticalDivider(color: Colors.red,thickness: 0.8,indent: 30,endIndent: 30,),
+       ///Product description,price,rating etc SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+              Padding(
+                 padding: const EdgeInsets.all(10.0),
+                 child: Container(
+                   decoration: BoxDecoration(
+                     color: allColors.themeColorFade,
+                     borderRadius: BorderRadius.circular(10)
+                   ),
 
-             Padding(
-               padding: const EdgeInsets.all(10.0),
-               child: Container(
-                 decoration: BoxDecoration(
-                   color: allColors.themeColorFade,
-                   borderRadius: BorderRadius.circular(10)
+                   child: Column(
+                     children: [
+
+                       TextContainer(dynamicWidth,"It is a four wheeler with tremendous horse power",Colors.black),
+                       TextContainer(dynamicWidth,"Price: \$$price",Colors.red),
+
+                     ],
+                   ),
                  ),
+               )
 
-                 child: Column(
-                   children: [
+              ///Product description,price,rating etc EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
 
-                     TextContainer(dynamicWidth,"It is a four wheeler with tremendous horse power",Colors.black),
-                     TextContainer(dynamicWidth,"Price: \$$price",Colors.red),
 
-                   ],
-                 ),
-               ),
-             )
-
-          ],
+            ],
+          ),
         ),
       ),
     );
