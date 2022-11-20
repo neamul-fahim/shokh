@@ -9,11 +9,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
-//import 'package:sokh/drawer/select_image.dart';
-//import 'package:sokh/signup_and_login/log_in.dart';
-//import 'package:sokh/drawer/weather.dart';
 import 'package:sokh/my_home_page/my_home_page.dart';
-
 import '../provider/app_drawer_provider.dart';
 import '../signin_login/login.dart';
 
@@ -65,8 +61,8 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
                       },
                       child:
                       Container(
-                        height: dynamicWidth*0.4,
-                        width: dynamicWidth*0.4,
+                        height: dynamicWidth*0.3,
+                        width: dynamicWidth*0.3,
                         child: finalImageFile==null?
 
                         Image.asset("assets/image/profie_pic.jpg",fit: BoxFit.cover,):
@@ -88,7 +84,7 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
                     /// Profile pic EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
 
                     Text(appDrawerProvider.appDrawerModelClass.profileName.toString(),
-                        style:TextStyle(fontSize: 28,fontWeight:FontWeight.w400 ) ),///User name
+                        style:TextStyle(fontSize: 20,fontWeight:FontWeight.w400 ) ),///User name
 
 
                    const SizedBox(
@@ -101,11 +97,11 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
                     drawerProperty(Icons.notifications_active, 'Notification',context,()=>MyHomePage()),
                     //drawerProperty(Icons.cloud_rounded, 'Weather',context,()=>Weather()),
                    const Divider(
-                      color: Colors.black,
-                      thickness: 2,
+                      //color: Colors.black,
+                      thickness: 1,
                       height: 20,
-                        indent: 8,
-                      endIndent: 8,
+                        indent: 15,
+                      endIndent: 15,
                     ),
                     drawerProperty(Icons.cloud_rounded, 'Login',context,()=>LogIN()),
                    drawerProperty(Icons.logout_rounded, 'Logout',context,()=>LogIN()),
@@ -165,12 +161,12 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
         },
         child: Row(
           children: [
-            Icon(drawerOptionIcon,color: Colors.black,size: 35),
+            Icon(drawerOptionIcon,color: Colors.black,size: 28),
             SizedBox(
               width: 10,
             ),
             Text(drawerOptionName,style: TextStyle(
-              fontSize: 22,
+              fontSize: 18,
               fontWeight: FontWeight.w400
 
             ),),

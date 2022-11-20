@@ -51,11 +51,12 @@ class _ProductCategoriesState extends State<ProductCategories> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.only(left: 15,right: 15,top: 35),
               child: PhysicalModel(
+                borderRadius:BorderRadius.circular(30) ,
               color: Colors.grey.shade200,
               shadowColor: Colors.black,
-              shape: BoxShape.circle,
+              shape: BoxShape.rectangle,
               elevation: 20,
               child: Stack(
                // alignment: AlignmentDirectional.topStart,
