@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sokh/signin_login/login.dart';
 import 'package:sokh/signin_login/signin.dart';
-import 'package:sokh/signup_and_login/log_in.dart';
 import 'package:sokh/firebase_options.dart';
 import 'package:sokh/provider/app_drawer_provider.dart';
 import 'package:sokh/provider/my_home_page_provider.dart';

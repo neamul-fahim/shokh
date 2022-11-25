@@ -10,18 +10,22 @@ class CustomTextField extends StatefulWidget {
   TextEditingController textController;
   String ErrorMsg;
   String HintText;
-  String LabelText;
+  String? LabelText;
   IconData fieldIcon;
   bool obscurePass;
   CustomTextField({Key? key,
     required this.textController,
     required this.ErrorMsg,
     required this.HintText,
-    required this.LabelText,
+   // required this.LabelText,
+    String? LabelText,///
     required this.fieldIcon,
     required this.obscurePass,
 
-  }) : super(key: key);
+  }) : super(key: key)
+  { ///
+    this.LabelText=LabelText;///
+  }///
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -92,7 +96,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
 
 
           hintText: widget.HintText,
-          label:Text(widget.LabelText),
+          label:Text(widget.LabelText!),
 
 
           labelStyle: TextStyle(

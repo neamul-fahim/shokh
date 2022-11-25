@@ -51,63 +51,65 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
 
               child: Padding(
                 padding: const EdgeInsets.only(top: 85.0),
-                child: Column(
-                  children:[
+                child: SingleChildScrollView(
+                  child: Column(
+                    children:[
 
-                    /// Profile pic SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
-                    InkWell(
-                      onTap: (){
-                       SelectImage(ImageSource.gallery);
-                      },
-                      child:
-                      Container(
-                        height: dynamicWidth*0.3,
-                        width: dynamicWidth*0.3,
-                        child: finalImageFile==null?
+                      /// Profile pic SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+                      InkWell(
+                        onTap: (){
+                         SelectImage(ImageSource.gallery);
+                        },
+                        child:
+                        Container(
+                          height: dynamicWidth*0.3,
+                          width: dynamicWidth*0.3,
+                          child: finalImageFile==null?
 
-                        Image.asset("assets/image/profie_pic.jpg",fit: BoxFit.cover,):
-                        Image.file(finalImageFile!,fit: BoxFit.cover,),
-                        decoration: BoxDecoration(
-                          color: Colors.black,
-                          borderRadius: BorderRadius.circular(30),
+                          Image.asset("assets/image/profie_pic.jpg",fit: BoxFit.cover,):
+                          Image.file(finalImageFile!,fit: BoxFit.cover,),
+                          decoration: BoxDecoration(
+                            color: Colors.black,
+                            borderRadius: BorderRadius.circular(30),
+                          ),
                         ),
+                        //     :Container(
+                        //   height: dynamicWidth*0.18,
+                        //   width: dynamicWidth*0.18,
+                        //   child:Image.file(finalImageFile!),
+                        //   decoration: BoxDecoration(
+                        //       color: Colors.black,
+                        //       borderRadius: BorderRadius.circular(30),
+                        //   ),
                       ),
-                      //     :Container(
-                      //   height: dynamicWidth*0.18,
-                      //   width: dynamicWidth*0.18,
-                      //   child:Image.file(finalImageFile!),
-                      //   decoration: BoxDecoration(
-                      //       color: Colors.black,
-                      //       borderRadius: BorderRadius.circular(30),
-                      //   ),
-                    ),
-                    /// Profile pic EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+                      /// Profile pic EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
 
-                    Text(appDrawerProvider.appDrawerModelClass.profileName.toString(),
-                        style:TextStyle(fontSize: 20,fontWeight:FontWeight.w400 ) ),///User name
+                      Text(appDrawerProvider.appDrawerModelClass.profileName.toString(),
+                          style:TextStyle(fontSize: 20,fontWeight:FontWeight.w400 ) ),///User name
 
 
-                   const SizedBox(
-                      height: 60,
-                    ),
-                    /// Drawer options SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+                     const SizedBox(
+                        height: 60,
+                      ),
+                      /// Drawer options SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
 
-                    drawerProperty(Icons.home_rounded, 'Home',context,()=>MyHomePage()),
-                    drawerProperty(Icons.add_circle, 'Add Post',context,()=>MyHomePage()),
-                    drawerProperty(Icons.notifications_active, 'Notification',context,()=>MyHomePage()),
-                    //drawerProperty(Icons.cloud_rounded, 'Weather',context,()=>Weather()),
-                   const Divider(
-                      //color: Colors.black,
-                      thickness: 1,
-                      height: 20,
-                        indent: 15,
-                      endIndent: 15,
-                    ),
-                    drawerProperty(Icons.cloud_rounded, 'Login',context,()=>LogIN()),
-                   drawerProperty(Icons.logout_rounded, 'Logout',context,()=>LogIN()),
+                      drawerProperty(Icons.home_rounded, 'Home',context,()=>MyHomePage()),
+                      drawerProperty(Icons.add_circle, 'Add Post',context,()=>MyHomePage()),
+                      drawerProperty(Icons.notifications_active, 'Notification',context,()=>MyHomePage()),
+                      //drawerProperty(Icons.cloud_rounded, 'Weather',context,()=>Weather()),
+                     const Divider(
+                        //color: Colors.black,
+                        thickness: 1,
+                        height: 20,
+                          indent: 15,
+                        endIndent: 15,
+                      ),
+                      drawerProperty(Icons.cloud_rounded, 'Login',context,()=>LogIN()),
+                     drawerProperty(Icons.logout_rounded, 'Logout',context,()=>LogIN()),
 
-                    /// Drawer options EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
-                  ],
+                      /// Drawer options EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+                    ],
+                  ),
                 ),
               ),
             );

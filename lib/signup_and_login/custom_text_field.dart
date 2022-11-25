@@ -23,7 +23,8 @@ class CustomAccountPage extends StatefulWidget {
 
 
    CustomAccountPage({Key? key,
-     required this.actionName,
+     //required this.actionName,
+     string actionName,
      required this.emailErrorMsg,
      required this.emailHintText,
      required this.emailLabelText,
@@ -34,7 +35,9 @@ class CustomAccountPage extends StatefulWidget {
      required this.signupLoginOption,
      required this.signUpExtra,
      required this.Goto,
-   }) : super(key: key);
+   }) : super(key: key){
+     this.actionName=actionName;
+   }
 
 
   @override

@@ -2,6 +2,7 @@ import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.da
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sokh/drawer/drawer_structure.dart';
+import 'package:sokh/featured/featured.dart';
 import 'package:sokh/product_categories/product_categories.dart';
 import 'package:sokh/provider/app_drawer_provider.dart';
 import 'package:sokh/provider/my_home_page_provider.dart';
@@ -104,21 +105,29 @@ class _MyHomePageState extends State<MyHomePage> {
         ///Bottom navigation bar EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
 
 
-        body: SingleChildScrollView(child: Consumer<MyHomePageProvider>(
+        body: Consumer<MyHomePageProvider>(
             builder: (context, myHomePageProvider, index) {
-          return Column(
-            children: [
-              ImageSlider(
-                  //context: context,
-                  myHomePageProvider: myHomePageProvider),
-              ProductCategories(
-                context: context,
-                homePageProvider: myHomePageProvider,
-              ),
-              FlashSale(),
-            ],
+          return SingleChildScrollView(
+            child: Column(
+              children: [
+                ImageSlider(
+                    //context: context,
+                    myHomePageProvider: myHomePageProvider),
+                ProductCategories(
+                  context: context,
+                  homePageProvider: myHomePageProvider,
+                ),
+                FlashSale(),
+
+                Featured(),
+                Container(
+                  color: Colors.red,
+                  height: dynamicHeight*0.2,
+                ),
+              ],
+            ),
           );
-        })),
+        }),
       ),
     );
   }

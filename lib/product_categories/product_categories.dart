@@ -4,7 +4,6 @@ import 'package:sokh/product_categories/custom_circle_container.dart';
 import 'package:sokh/product_categories/product_category_pic_and_name.dart';
 import 'package:sokh/provider/my_home_page_provider.dart';
 
-
 class ProductCategories extends StatefulWidget {
 
 
@@ -53,7 +52,7 @@ class _ProductCategoriesState extends State<ProductCategories> {
             Padding(
               padding: const EdgeInsets.only(left: 15,right: 15,top: 35),
               child: PhysicalModel(
-                borderRadius:BorderRadius.circular(30) ,
+                borderRadius:BorderRadius.circular(30),
               color: Colors.grey.shade200,
               shadowColor: Colors.black,
               shape: BoxShape.rectangle,
@@ -89,13 +88,20 @@ class _ProductCategoriesState extends State<ProductCategories> {
 
                         ],
                       ),
+                      // Row(
+                      //   children: [
+                      //     Spacer(),
+                      //     for(int i=5;i<=7;i++)
+                      //       CustomCircleContainer(productPic: productCatPicAndName.productPic[i],
+                      //         productDescription: productCatPicAndName.productDescription[i],
+                      //         //index: i,
+                      //       ),
+                      //     Spacer(),
+                      //
+                      //   ],
+                      // ),
                     ],
                   )
-
-
-
-
-
 
                 ],
               ),
