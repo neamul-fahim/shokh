@@ -37,7 +37,8 @@ class _FeaturedState extends State<Featured> {
        ),
       child: Expanded(
         child: GridView.count(
-         // physics: ,
+          primary: false,
+          physics:NeverScrollableScrollPhysics() ,
           crossAxisCount:2,
           //padding:EdgeInsets.only(top: 80,left: 20,right: 20) ,
           //crossAxisSpacing: 2,
