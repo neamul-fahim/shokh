@@ -31,8 +31,9 @@ class _FeaturedState extends State<Featured> {
     double dynamicWidth =MediaQuery.of(context).size.width;
 
     return Container(
+      margin:EdgeInsets.only(top:10) ,
       padding:EdgeInsets.all(10),
-      height:dynamicHeight*1.15,
+      height:dynamicHeight*1.3,
       decoration: BoxDecoration(
           color: Colors.red.shade200,
           borderRadius:BorderRadius.circular(20)
@@ -42,21 +43,21 @@ class _FeaturedState extends State<Featured> {
         physics:NeverScrollableScrollPhysics() ,
         crossAxisCount:2,
         //padding:EdgeInsets.only(top: 80,left: 20,right: 20) ,
-        //crossAxisSpacing: 2,
-         // mainAxisSpacing: 2,
-
-
+        crossAxisSpacing: 4,
+          mainAxisSpacing: 4,
+              childAspectRatio:0.9,
               children: [
                 for(int i=0;i<featuredProduct.length;i++)
                  // GrideElement(featuredProduct[i]),
-                Card(
-                  shape:RoundedRectangleBorder(
-
-                    borderRadius: BorderRadius.circular(20),
-                  ) ,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
-                        child: Image.asset(featuredProduct[i],fit: BoxFit.cover,))
+                Container(
+                  height: dynamicHeight*1.5,
+                  width: dynamicWidth,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                      child: Image.asset(featuredProduct[i],fit: BoxFit.cover,)),
                 ),
 
         ],
