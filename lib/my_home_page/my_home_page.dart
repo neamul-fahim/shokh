@@ -119,7 +119,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 FlashSale(),
 
-                Featured(),
+                const Featured(),
                 Container(
                   color: Colors.red,
                   height: dynamicHeight*0.2,

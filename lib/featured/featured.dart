@@ -31,32 +31,48 @@ class _FeaturedState extends State<Featured> {
     double dynamicWidth =MediaQuery.of(context).size.width;
 
     return Container(
-      height:dynamicHeight*0.5,
-       decoration: BoxDecoration(
+      padding:EdgeInsets.all(10),
+      height:dynamicHeight*1.15,
+      decoration: BoxDecoration(
+          color: Colors.red.shade200,
+          borderRadius:BorderRadius.circular(20)
+      ),
+      child: GridView.count(
+       //primary: false,
+        physics:NeverScrollableScrollPhysics() ,
+        crossAxisCount:2,
+        //padding:EdgeInsets.only(top: 80,left: 20,right: 20) ,
+        //crossAxisSpacing: 2,
+         // mainAxisSpacing: 2,
 
-       ),
-      child: Expanded(
-        child: GridView.count(
-          primary: false,
-          physics:NeverScrollableScrollPhysics() ,
-          crossAxisCount:2,
-          //padding:EdgeInsets.only(top: 80,left: 20,right: 20) ,
-          //crossAxisSpacing: 2,
-           // mainAxisSpacing: 2,
 
+              children: [
+                for(int i=0;i<featuredProduct.length;i++)
+                 // GrideElement(featuredProduct[i]),
+                Card(
+                  shape:RoundedRectangleBorder(
 
-                children: [
-                  for(int i=0;i<featuredProduct.length;i++)
-                  Card(
-                    shape:RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ) ,
+                    child: ClipRRect(
                       borderRadius: BorderRadius.circular(20),
-                    ) ,
-                      child: Image.asset(featuredProduct[i],fit: BoxFit.contain,)
-                  ),
+                        child: Image.asset(featuredProduct[i],fit: BoxFit.cover,))
+                ),
 
-          ],
-        ),
+        ],
       ),
     );
+  }
+  GrideElement(String pic)
+  {
+    return
+    Card(
+        shape:RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+        ) ,
+        child: Image.asset(pic,fit: BoxFit.fill,)
+    );
+
+
   }
 }
