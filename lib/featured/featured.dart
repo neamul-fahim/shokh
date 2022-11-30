@@ -40,29 +40,31 @@ class _FeaturedState extends State<Featured> {
       ),
       child: Column(
         children: [
-          GridView.count(
-           //primary: false,
-            physics:NeverScrollableScrollPhysics() ,
-            crossAxisCount:2,
-            //padding:EdgeInsets.only(top: 80,left: 20,right: 20) ,
-            crossAxisSpacing: 4,
-              mainAxisSpacing: 4,
-                  childAspectRatio:0.9,
-                  children: [
-                    for(int i=0;i<featuredProduct.length;i++)
-                     // GrideElement(featuredProduct[i]),
-                    Container(
-                      height: dynamicHeight*1.5,
-                      width: dynamicWidth,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
+          Expanded(
+            child: GridView.count(
+             //primary: false,
+              physics:NeverScrollableScrollPhysics() ,
+              crossAxisCount:2,
+              //padding:EdgeInsets.only(top: 80,left: 20,right: 20) ,
+              crossAxisSpacing: 4,
+                mainAxisSpacing: 4,
+                    childAspectRatio:0.9,
+                    children: [
+                      for(int i=0;i<featuredProduct.length;i++)
+                       // GrideElement(featuredProduct[i]),
+                      Container(
+                        height: dynamicHeight*1.5,
+                        width: dynamicWidth,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(12),
+                            child: Image.asset(featuredProduct[i],fit: BoxFit.cover,)),
                       ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(12),
-                          child: Image.asset(featuredProduct[i],fit: BoxFit.cover,)),
-                    ),
 
-            ],
+              ],
+            ),
           ),
         ],
       ),
