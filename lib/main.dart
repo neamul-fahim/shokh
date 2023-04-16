@@ -23,12 +23,12 @@ import 'firebase_options.dart';
       );
   runApp(
       MultiProvider(
-    providers: [
-      ChangeNotifierProvider<MyHomePageProvider>(create: (_)=>MyHomePageProvider()),
-      ChangeNotifierProvider<AppDrawerProvider>(create: (_)=>AppDrawerProvider()),
-      ChangeNotifierProvider<WeatherProvider>(create: (_)=>WeatherProvider()),
+         providers: [
+        ChangeNotifierProvider<MyHomePageProvider>(create: (_)=>MyHomePageProvider()),
+        ChangeNotifierProvider<AppDrawerProvider>(create: (_)=>AppDrawerProvider()),
+        ChangeNotifierProvider<WeatherProvider>(create: (_)=>WeatherProvider()),
     ],
-      child: MyApp())
+       child: MyApp())
   );
 }
 

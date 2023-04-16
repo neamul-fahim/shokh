@@ -35,7 +35,6 @@ class _CustomCircleContainerState extends State<CustomCircleContainer> {
             elevation: 20,
             shape: BoxShape.circle,
            // borderRadius: BorderRadius.circular(180),
-
             child: Container(
 
               height: dynamicWidth*0.12,
